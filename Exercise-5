@@ -1,5 +1,4 @@
-
-# Image Processing
+# Deep Learning - Deep Style Image Prior
 
 In this exercise you will be using StyleGAN2 Neural Network to perform different image reconstruction tasks.
 The exercise is based on the work of Gabbay et al.
@@ -13,3 +12,4 @@ The exercise is based on the work of Gabbay et al.
   - Image Deblurring
   - Image Colorization
   - Image Inpainting
+
