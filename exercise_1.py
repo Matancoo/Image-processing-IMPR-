@@ -83,6 +83,7 @@ def histogram_equalize(im_orig):
     hist_cumul = np.cumsum(hist_orig)
     # find the FIRST index -m- where the value in the cumulative histogram is not zero
     m = np.nonzero(hist_cumul)[0][0]
+    
     # creating lookup table normalized and streched
     look_table = np.round(
         (
@@ -207,16 +208,17 @@ def quantize(im_orig, n_quant, n_iter):
         error - is an array with shape (n_iter,) (or less) of the total intensities error for each iteration of the
                 quantization procedure
     """
+    
     image = get_grey(im_orig)
     hist_image = np.histogram(image, 256)[0]
     boundaries = get_initial_boundaries(n_quant, hist_image)
     boundaries = boundaries.astype(int)
     error = []
+    
     for j in range(n_iter):
         q1 = get_pixel_segment_avg(n_quant, hist_image, boundaries)
         error.append(error_calculation(n_quant, q1, boundaries, hist_image))
         new_boundaries = get_updated_boundaries(n_quant, q1)
-#want to break if new_boundaries have problrm-- i think problme lies in the rounding down in get pixel avg when using int
 
         if np.array_equal(boundaries, new_boundaries):
             break
@@ -224,10 +226,11 @@ def quantize(im_orig, n_quant, n_iter):
 
     im_quant = (np.copy(image) * 255).astype(int)
     boundaries = boundaries.astype(int)
+    
     for i in range(n_quant):
-        pixel_coordinates_to_change = (boundaries[i] < im_quant) & (
-                    boundaries[i + 1] >= im_quant)  # index by mask numpy
+        pixel_coordinates_to_change = (boundaries[i] < im_quant) & boundaries[i + 1] >= im_quant)  
         im_quant[pixel_coordinates_to_change] = q1[i]
+    
     error = np.array(error)
     if len(im_orig.shape) == 3:
         I = rgb2yiq(im_orig)[:, :, 1]
