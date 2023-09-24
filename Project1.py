@@ -1,9 +1,6 @@
 import copy
 import math
-
-import numpy
 import numpy as np
-
 from skimage import data
 from skimage.color import rgb2gray
 from imageio import imread, imwrite

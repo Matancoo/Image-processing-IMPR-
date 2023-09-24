@@ -225,7 +225,7 @@ def fourier_der(im):
     magnitude = np.sqrt(np.abs(x_derivative) ** 2 + np.abs(y_derivative) ** 2)
     return magnitude
 
-# ex1 functions: #
+# Project1 functions: #
 
 
 def read_image(filename, representation):
