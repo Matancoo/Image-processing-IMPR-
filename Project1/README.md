@@ -1,1 +1,3 @@
-# Exercise 5: Deep Learning - Deep Style Image Prior
+# Project 1: Image Representations, Intensity Transformations, and Quantization
+
+
